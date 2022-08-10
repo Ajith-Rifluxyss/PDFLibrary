@@ -14,14 +14,14 @@ import java.io.FileOutputStream;
 
 public class PDFModule {
 
-   public static void CreatePdf(Activity context , String content){
+   public static void CreatePdf(Activity context , String content, int pageWidth, int pageHeight, int PageNumbers, int textColor){
        PdfDocument document = new PdfDocument();
        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(300, 600, 1).create();
        PdfDocument.Page page = document.startPage(pageInfo);
        Canvas canvas = page.getCanvas();
        Paint paint = new Paint();
        paint.setColor(Color.RED);
-       canvas.drawText(content, 80F, 50F, paint);
+       canvas.drawText(content, 10F, 10F, paint);
        document.finishPage(page);
 
        String path = Environment.getExternalStorageDirectory().getPath()+"/MyPdf/";
