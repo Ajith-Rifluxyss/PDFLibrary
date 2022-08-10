@@ -35,6 +35,7 @@ public class PDFModule {
            document.writeTo(new FileOutputStream(targetFile));
            Toast.makeText(context, "Pdf created", Toast.LENGTH_SHORT).show();
        }catch (Exception e){
+           Toast.makeText(context, "Pdf failed", Toast.LENGTH_SHORT).show();
            e.printStackTrace();
        }
        document.close();
