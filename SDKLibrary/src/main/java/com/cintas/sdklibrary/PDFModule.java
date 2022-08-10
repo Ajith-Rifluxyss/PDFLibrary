@@ -28,7 +28,7 @@ public class PDFModule {
        if (!file.exists()){
            file.mkdirs();
        }
-       String targetpath = file.getAbsolutePath()+"test.pdf";
+       String targetpath = file.getAbsolutePath()+"/test.pdf";
        File targetFile = new File(targetpath);
 
        try {
