@@ -14,13 +14,13 @@ import java.io.FileOutputStream;
 
 public class PDFModule {
 
-   public static void CreatePdf(Activity context , String content, int pageWidth, int pageHeight, int PageNumbers, int textColor){
+   public static void CreatePdf(Activity context , String content, int pageWidth, int pageHeight, int pageNumbers, int textColor){
        PdfDocument document = new PdfDocument();
-       PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(300, 600, 1).create();
+       PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight,pageNumbers ).create();
        PdfDocument.Page page = document.startPage(pageInfo);
        Canvas canvas = page.getCanvas();
        Paint paint = new Paint();
-       paint.setColor(Color.RED);
+       paint.setColor(textColor);
        canvas.drawText(content, 10F, 10F, paint);
        document.finishPage(page);
 
