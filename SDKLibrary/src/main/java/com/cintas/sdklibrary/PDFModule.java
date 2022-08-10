@@ -1,5 +1,6 @@
 package com.cintas.sdklibrary;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,7 +14,7 @@ import java.io.FileOutputStream;
 
 public class PDFModule {
 
-   public static void CreatePdf(Context context , String content){
+   public static void CreatePdf(Activity context , String content){
        PdfDocument document = new PdfDocument();
        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(300, 600, 1).create();
        PdfDocument.Page page = document.startPage(pageInfo);
@@ -33,9 +34,21 @@ public class PDFModule {
 
        try {
            document.writeTo(new FileOutputStream(targetFile));
-           Toast.makeText(context, "Pdf created", Toast.LENGTH_SHORT).show();
+           context.runOnUiThread(new Runnable() {
+               @Override
+               public void run() {
+                   Toast.makeText(context, "Pdf Success", Toast.LENGTH_SHORT).show();
+               }
+           });
+
        }catch (Exception e){
-           Toast.makeText(context, "Pdf failed", Toast.LENGTH_SHORT).show();
+           context.runOnUiThread(new Runnable() {
+               @Override
+               public void run() {
+                   Toast.makeText(context, "Pdf failed >> "+e.getMessage(), Toast.LENGTH_SHORT).show();
+               }
+           });
+
            e.printStackTrace();
        }
        document.close();
