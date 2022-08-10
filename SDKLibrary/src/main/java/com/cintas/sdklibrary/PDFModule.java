@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
 import android.os.Environment;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -32,6 +33,7 @@ public class PDFModule {
 
        try {
            document.writeTo(new FileOutputStream(targetFile));
+           Toast.makeText(context, "Pdf created", Toast.LENGTH_SHORT).show();
        }catch (Exception e){
            e.printStackTrace();
        }
